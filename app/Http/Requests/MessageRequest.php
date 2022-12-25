@@ -2,18 +2,21 @@
 
 namespace App\Http\Requests;
 
+use App\Trait\ApiResponse;
 use Illuminate\Foundation\Http\FormRequest;
 
-class MessgaeRequest extends FormRequest
+class MessageRequest extends FormRequest
 {
+    use ApiResponse;
+
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +24,10 @@ class MessgaeRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'message' => 'required|string',
         ];
     }
 }
